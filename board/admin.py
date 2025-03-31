@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Ads, Review
+
+admin.site.register(Ads)
+admin.site.register(Review)

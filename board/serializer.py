@@ -1,8 +1,15 @@
-from rest_framework.serializers import ModelSerializer
-from board.models import Ads
+from rest_framework import serializers
+
+from .models import Ads, Review
 
 
-class AdsSerializer(ModelSerializer):
+class AdsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ads
+        fields = "__all__"
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
         fields = "__all__"
