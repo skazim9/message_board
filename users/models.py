@@ -16,9 +16,7 @@ class User(AbstractUser):
         verbose_name="Фамилия пользователя",
     )
 
-    email = models.EmailField(
-        unique=True, verbose_name="Почта", help_text="Укажите почту"
-    )
+    email = models.EmailField(unique=True, verbose_name="Почта", help_text="Укажите почту")
 
     phone = models.CharField(
         max_length=35,
@@ -28,9 +26,7 @@ class User(AbstractUser):
         help_text="Укажите телефон",
     )
 
-    role = models.CharField(
-        max_length=10, choices=[("user", "User"), ("admin", "Admin")], default="user"
-    )
+    role = models.CharField(max_length=10, choices=[("user", "User"), ("admin", "Admin")], default="user")
 
     avatar = models.ImageField(
         upload_to="users/avatars",

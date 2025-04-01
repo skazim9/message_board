@@ -28,20 +28,12 @@ class AdsViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         # Для методов, изменяющих данные
         if self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
-            if (
-                self.request.user and self.request.user.is_staff
-            ):  # Проверяем, является ли пользователь администратором
-                self.permission_classes = [
-                    permissions.IsAuthenticated
-                ]  # Администраторы могут всё
+            if self.request.user and self.request.user.is_staff:  # Проверяем, является ли пользователь администратором
+                self.permission_classes = [permissions.IsAuthenticated]  # Администраторы могут всё
             else:
-                self.permission_classes = [
-                    IsOwnerOrReadOnly
-                ]  # Для обычных пользователей
+                self.permission_classes = [IsOwnerOrReadOnly]  # Для обычных пользователей
         else:
-            self.permission_classes = [
-                IsAuthenticatedOrReadOnly
-            ]  # Анонимные пользователи могут только читать
+            self.permission_classes = [IsAuthenticatedOrReadOnly]  # Анонимные пользователи могут только читать
 
         return super(AdsViewSet, self).get_permissions()
 
@@ -56,19 +48,11 @@ class ReviewViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         # Для методов, изменяющих данные
         if self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
-            if (
-                self.request.user and self.request.user.is_staff
-            ):  # Проверяем, является ли пользователь администратором
-                self.permission_classes = [
-                    permissions.IsAuthenticated
-                ]  # Администраторы могут всё
+            if self.request.user and self.request.user.is_staff:  # Проверяем, является ли пользователь администратором
+                self.permission_classes = [permissions.IsAuthenticated]  # Администраторы могут всё
             else:
-                self.permission_classes = [
-                    IsOwnerOrReadOnly
-                ]  # Для обычных пользователей
+                self.permission_classes = [IsOwnerOrReadOnly]  # Для обычных пользователей
         else:
-            self.permission_classes = [
-                IsAuthenticatedOrReadOnly
-            ]  # Анонимные пользователи могут только читать
+            self.permission_classes = [IsAuthenticatedOrReadOnly]  # Анонимные пользователи могут только читать
 
         return super(ReviewViewSet, self).get_permissions()

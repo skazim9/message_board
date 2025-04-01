@@ -10,9 +10,7 @@ class Ads(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True
     )  # Пользователь, создавший объявление
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )  # Время и дата создания объявления
+    created_at = models.DateTimeField(auto_now_add=True)  # Время и дата создания объявления
 
     class Meta:
         ordering = ["-created_at"]  # Сортировка по дате создания (по убыванию)
@@ -23,9 +21,7 @@ class Ads(models.Model):
 
 class Review(models.Model):
     text = models.TextField()  # Текст отзыва
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True, blank=True
-    )  # Пользователь, оставивший отзыв
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # Пользователь, оставивший отзыв
     ad = models.ForeignKey(
         Ads, related_name="reviews", on_delete=models.CASCADE
     )  # Объявление, под которым оставлен отзыв

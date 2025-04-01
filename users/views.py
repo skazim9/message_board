@@ -32,9 +32,7 @@ class ResetPasswordView(APIView):
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            return Response(
-                {"error": "User not found"}, status=status.HTTP_404_NOT_FOUND
-            )
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -71,9 +69,7 @@ class ResetPasswordConfirmView(APIView):
         if user is not None and default_token_generator.check_token(user, token):
             user.set_password(new_password)
             user.save()
-            return Response(
-                {"message": "Пароль успешно изменен."}, status=status.HTTP_200_OK
-            )
+            return Response({"message": "Пароль успешно изменен."}, status=status.HTTP_200_OK)
         else:
             return Response(
                 {"error": "Ссылка для сброса пароля недействительна."},
